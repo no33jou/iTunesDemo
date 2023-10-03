@@ -1,0 +1,55 @@
+//
+//  ListViewModel.swift
+//  iTunesDemo
+//
+//  Created by yaojunren on 2023/10/3.
+//
+
+import Foundation
+import Combine
+class ListViewModel<T> {
+    var limit:Int = 20
+    var listCount:Int = 0
+    var list:[T] = []
+    enum DataState {
+        case normal
+        case empty
+        case noMore
+        case error
+        case loading
+    }
+    var state:DataState = .normal
+    var task:Cancellable?
+    func resetData() {
+        list = []
+        state = .normal
+        listCount = 0
+        task?.cancel()
+        task = nil
+    }
+    func updateData(_ results:[T]){
+        // 无数据
+        if results.isEmpty && list.isEmpty {
+            state = .empty
+            return
+        }
+        // 无更多数据
+        if results.isEmpty && !list.isEmpty{
+            state = .noMore
+            return
+        }
+        state = .normal
+        list.append(contentsOf: results)
+        listCount = list.count
+    }
+    func fetchData() {
+        resetData()
+        state = .loading
+    }
+    func fetchMoreData(){
+        if state != .normal {
+            return
+        }
+        state = .loading
+    }
+}

@@ -8,20 +8,18 @@
 import Foundation
 import UIKit
 
-protocol MusicCellViewModel{
-    var imageUrl:URL? { get }
-    var title:String? { get }
-    var detail:String? { get }
-    
+protocol MusicCellViewModel {
+    var imageUrl: URL? { get }
+    var title: String? { get }
+    var detail: String? { get }
 }
-class MusicCell: UITableViewCell, NibFromClassNameble{
-    var viewModel:MusicCellViewModel?{
-        didSet{
-            
-        }
+
+class MusicCell: UITableViewCell, NibFromClassNameble {
+    var viewModel: MusicCellViewModel? {
+        didSet {}
     }
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        
     }
 }

@@ -8,14 +8,15 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
-    var searchBar:UISearchController {
+    @IBOutlet var tableView: UITableView!
+    var searchBar: UISearchController {
         let resultVC = SearchResultViewController()
         let search = UISearchController(searchResultsController: resultVC)
         search.searchBar.placeholder = "xxxxxxxx"
         search.obscuresBackgroundDuringPresentation = false
         return search
     }
+
     var titleHeaderView: UILabel {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 26, weight: .bold)
@@ -23,6 +24,7 @@ class ViewController: UIViewController {
         label.backgroundColor = .white
         return label
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -30,10 +32,10 @@ class ViewController: UIViewController {
         setupView()
         bindView()
     }
+
     func setupView() {
         navigationItem.searchController = searchBar
         navigationItem.hidesSearchBarWhenScrolling = false
-        
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -42,19 +44,21 @@ class ViewController: UIViewController {
         tableView.sectionHeaderHeight = 48
         tableView.register(MusicCell.nibFromClassName(), forCellReuseIdentifier: "cell")
     }
-    func bindView(){
-        
-    }
 
+    func bindView() {}
 }
+
 // MARK: - Delegate
-extension ViewController:UITableViewDelegate, UITableViewDataSource{
+
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         titleHeaderView
     }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
     }
@@ -64,6 +68,4 @@ extension ViewController:UITableViewDelegate, UITableViewDataSource{
         
         return cell
     }
-    
-    
 }

@@ -6,3 +6,11 @@
 //
 
 import Foundation
+import UIKit
+import Combine
+
+class SearchResultViewController:UIViewController{
+    @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var activityView: UIActivityIndicatorView!
+}

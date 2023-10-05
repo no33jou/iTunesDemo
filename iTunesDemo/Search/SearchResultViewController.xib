@@ -10,36 +10,34 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchResultViewController" customModule="iTunesDemo" customModuleProvider="target">
             <connections>
-                <outlet property="view" destination="bI3-ko-7hX" id="AOc-86-4UX"/>
+                <outlet property="view" destination="36m-Z4-IEe" id="xMu-bK-Tgf"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <viewController id="Jyh-bt-CeD" customClass="SearchResultViewController" customModule="iTunesDemo" customModuleProvider="target">
-            <view key="view" contentMode="scaleToFill" id="bI3-ko-7hX">
-                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                <subviews>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ta6-ff-olN">
-                        <rect key="frame" x="0.0" y="59" width="393" height="759"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </tableView>
-                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="G3c-rR-gSZ">
-                        <rect key="frame" x="178" y="289.33333333333331" width="37" height="37"/>
-                    </activityIndicatorView>
-                </subviews>
-                <viewLayoutGuide key="safeArea" id="esw-TM-aF9"/>
-                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                <constraints>
-                    <constraint firstItem="ta6-ff-olN" firstAttribute="top" secondItem="esw-TM-aF9" secondAttribute="top" id="0ae-h5-1vC"/>
-                    <constraint firstItem="esw-TM-aF9" firstAttribute="trailing" secondItem="ta6-ff-olN" secondAttribute="trailing" id="Muc-qd-L6k"/>
-                    <constraint firstItem="ta6-ff-olN" firstAttribute="leading" secondItem="esw-TM-aF9" secondAttribute="leading" id="fT6-Vb-rbK"/>
-                    <constraint firstItem="G3c-rR-gSZ" firstAttribute="centerY" secondItem="esw-TM-aF9" secondAttribute="centerY" multiplier="0.7" constant="1" id="pfX-3K-1qA"/>
-                    <constraint firstItem="G3c-rR-gSZ" firstAttribute="centerX" secondItem="esw-TM-aF9" secondAttribute="centerX" id="sO4-AW-Zxq"/>
-                    <constraint firstItem="esw-TM-aF9" firstAttribute="bottom" secondItem="ta6-ff-olN" secondAttribute="bottom" id="tTf-HR-DgR"/>
-                </constraints>
-            </view>
-            <point key="canvasLocation" x="-718.32061068702285" y="43.661971830985919"/>
-        </viewController>
+        <view contentMode="scaleToFill" id="36m-Z4-IEe">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QFL-lg-TMR">
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="g2t-3Y-QeB">
+                    <rect key="frame" x="178" y="279.66666666666669" width="37" height="37"/>
+                </activityIndicatorView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="HGC-7y-lym"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="HGC-7y-lym" firstAttribute="trailing" secondItem="QFL-lg-TMR" secondAttribute="trailing" id="5Gv-jH-qrd"/>
+                <constraint firstItem="g2t-3Y-QeB" firstAttribute="centerY" secondItem="36m-Z4-IEe" secondAttribute="centerY" multiplier="0.7" id="FiW-Xd-wJ2"/>
+                <constraint firstItem="HGC-7y-lym" firstAttribute="bottom" secondItem="QFL-lg-TMR" secondAttribute="bottom" id="LS8-Mq-7Lj"/>
+                <constraint firstItem="QFL-lg-TMR" firstAttribute="leading" secondItem="HGC-7y-lym" secondAttribute="leading" id="Syy-98-oGM"/>
+                <constraint firstItem="g2t-3Y-QeB" firstAttribute="centerX" secondItem="36m-Z4-IEe" secondAttribute="centerX" id="Uba-6x-5gt"/>
+                <constraint firstItem="QFL-lg-TMR" firstAttribute="top" secondItem="HGC-7y-lym" secondAttribute="top" id="jT9-w2-Mme"/>
+            </constraints>
+            <point key="canvasLocation" x="-1217" y="-78"/>
+        </view>
     </objects>
     <resources>
         <systemColor name="systemBackgroundColor">

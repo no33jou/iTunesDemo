@@ -13,4 +13,16 @@ class SearchResultViewController:UIViewController{
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var activityView: UIActivityIndicatorView!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupView()
+        bindView()
+    }
+    func setupView() {
+        
+    }
+    func bindView() {
+        
+    }
 }

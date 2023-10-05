@@ -16,6 +16,8 @@
 		963CE6CF2ACD046400DFD2D6 /* iTunesAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CE6CE2ACD046400DFD2D6 /* iTunesAPIService.swift */; };
 		963CE6D12ACEAAB800DFD2D6 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CE6D02ACEAAB800DFD2D6 /* APIService.swift */; };
 		963CE6D32ACEC53400DFD2D6 /* BookmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CE6D22ACEC53400DFD2D6 /* BookmarkViewModel.swift */; };
+		963CE6D72ACECA4F00DFD2D6 /* DataStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CE6D62ACECA4F00DFD2D6 /* DataStoreProtocol.swift */; };
+		963CE6D92ACECA7A00DFD2D6 /* UserDefaultDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CE6D82ACECA7A00DFD2D6 /* UserDefaultDataStore.swift */; };
 		96DB71D42ACBF06F00EDC188 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DB71D32ACBF06F00EDC188 /* AppDelegate.swift */; };
 		96DB71D62ACBF06F00EDC188 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DB71D52ACBF06F00EDC188 /* SceneDelegate.swift */; };
 		96DB71D82ACBF06F00EDC188 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DB71D72ACBF06F00EDC188 /* ViewController.swift */; };
@@ -56,6 +58,8 @@
 		963CE6CE2ACD046400DFD2D6 /* iTunesAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesAPIService.swift; sourceTree = "<group>"; };
 		963CE6D02ACEAAB800DFD2D6 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		963CE6D22ACEC53400DFD2D6 /* BookmarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewModel.swift; sourceTree = "<group>"; };
+		963CE6D62ACECA4F00DFD2D6 /* DataStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreProtocol.swift; sourceTree = "<group>"; };
+		963CE6D82ACECA7A00DFD2D6 /* UserDefaultDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultDataStore.swift; sourceTree = "<group>"; };
 		96DB71D02ACBF06F00EDC188 /* iTunesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96DB71D32ACBF06F00EDC188 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96DB71D52ACBF06F00EDC188 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,8 +107,8 @@
 		960D3C6B2ACC6E4E00D7D53C /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				963CE6CE2ACD046400DFD2D6 /* iTunesAPIService.swift */,
-				963CE6D02ACEAAB800DFD2D6 /* APIService.swift */,
+				963CE6D52ACEC9A600DFD2D6 /* DataStore */,
+				963CE6D42ACEC99900DFD2D6 /* API */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -115,6 +119,24 @@
 				963CE6CC2ACD028700DFD2D6 /* MusicModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		963CE6D42ACEC99900DFD2D6 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				963CE6CE2ACD046400DFD2D6 /* iTunesAPIService.swift */,
+				963CE6D02ACEAAB800DFD2D6 /* APIService.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		963CE6D52ACEC9A600DFD2D6 /* DataStore */ = {
+			isa = PBXGroup;
+			children = (
+				963CE6D62ACECA4F00DFD2D6 /* DataStoreProtocol.swift */,
+				963CE6D82ACECA7A00DFD2D6 /* UserDefaultDataStore.swift */,
+			);
+			path = DataStore;
 			sourceTree = "<group>";
 		};
 		96DB71C72ACBF06F00EDC188 = {
@@ -341,6 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				963CE6D92ACECA7A00DFD2D6 /* UserDefaultDataStore.swift in Sources */,
 				96DB71D82ACBF06F00EDC188 /* ViewController.swift in Sources */,
 				960D3C6D2ACC786200D7D53C /* UIViewProtocol.swift in Sources */,
 				963CE6D32ACEC53400DFD2D6 /* BookmarkViewModel.swift in Sources */,
@@ -352,6 +375,7 @@
 				963CE6CF2ACD046400DFD2D6 /* iTunesAPIService.swift in Sources */,
 				96DB72072ACBF1C500EDC188 /* ListViewModel.swift in Sources */,
 				96DB71D62ACBF06F00EDC188 /* SceneDelegate.swift in Sources */,
+				963CE6D72ACECA4F00DFD2D6 /* DataStoreProtocol.swift in Sources */,
 				960D3C682ACC6B6B00D7D53C /* MusicCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

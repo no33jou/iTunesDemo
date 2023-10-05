@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MusicModel {
+struct MusicModel: Codable {
     
     let wrapperType:String
     

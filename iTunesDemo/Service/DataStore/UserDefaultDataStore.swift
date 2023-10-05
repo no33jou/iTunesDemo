@@ -8,7 +8,7 @@
 import Foundation
 
 class UserDefaultDataStore{
-    let shared = UserDefaultDataStore()
+    static let shared = UserDefaultDataStore()
     private init(){
     }
     
@@ -19,7 +19,7 @@ class UserDefaultDataStore{
     func remove(item: DataStoreKind){
         UserDefaults().removeObject(forKey: item.key)
     }
-    func get<T:Codable>(item: DataStoreKind) -> T?{
-        return UserDefaults().object(forKey: item.key) as? T
+    func get(key: DataStoreKind) -> Codable?{
+        return UserDefaults().object(forKey: key.key) as? Codable
     }
 }

@@ -31,5 +31,5 @@ enum DataStoreKind{
 protocol DataStore {
     func update(item: DataStoreKind)
     func remove(item: DataStoreKind)
-    func get<T:Codable>(item: DataStoreKind) -> T?
+    func get(key: DataStoreKind) -> Codable?
 }

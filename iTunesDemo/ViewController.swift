@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Combine
 class ViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     var searchBar: UISearchController {
@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         search.obscuresBackgroundDuringPresentation = false
         return search
     }
-
+    
     var titleHeaderView: UILabel {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 26, weight: .bold)
@@ -24,13 +24,20 @@ class ViewController: UIViewController {
         label.backgroundColor = .white
         return label
     }
-
+    var viewModel = BookmarkViewModel()
+    var cancles:[AnyCancellable] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         setupView()
         bindView()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.loadData()
     }
 
     func setupView() {
@@ -45,7 +52,9 @@ class ViewController: UIViewController {
         tableView.register(MusicCell.nibFromClassName(), forCellReuseIdentifier: "cell")
     }
 
-    func bindView() {}
+    func bindView() {
+        
+    }
 }
 
 // MARK: - Delegate

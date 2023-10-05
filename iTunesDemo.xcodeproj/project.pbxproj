@@ -11,6 +11,11 @@
 		960D3C6A2ACC6BAB00D7D53C /* MusicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 960D3C692ACC6BAB00D7D53C /* MusicCell.xib */; };
 		960D3C6D2ACC786200D7D53C /* UIViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960D3C6C2ACC786200D7D53C /* UIViewProtocol.swift */; };
 		963CE6C82ACCFF0800DFD2D6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 963CE6C72ACCFF0800DFD2D6 /* Kingfisher */; };
+		963CE6CA2ACD019500DFD2D6 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CE6C92ACD019500DFD2D6 /* SearchViewModel.swift */; };
+		963CE6CD2ACD028700DFD2D6 /* MusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CE6CC2ACD028700DFD2D6 /* MusicModel.swift */; };
+		963CE6CF2ACD046400DFD2D6 /* iTunesAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CE6CE2ACD046400DFD2D6 /* iTunesAPIService.swift */; };
+		963CE6D12ACEAAB800DFD2D6 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CE6D02ACEAAB800DFD2D6 /* APIService.swift */; };
+		963CE6D32ACEC53400DFD2D6 /* BookmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CE6D22ACEC53400DFD2D6 /* BookmarkViewModel.swift */; };
 		96DB71D42ACBF06F00EDC188 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DB71D32ACBF06F00EDC188 /* AppDelegate.swift */; };
 		96DB71D62ACBF06F00EDC188 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DB71D52ACBF06F00EDC188 /* SceneDelegate.swift */; };
 		96DB71D82ACBF06F00EDC188 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DB71D72ACBF06F00EDC188 /* ViewController.swift */; };
@@ -46,6 +51,11 @@
 		960D3C672ACC6B6B00D7D53C /* MusicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCell.swift; sourceTree = "<group>"; };
 		960D3C692ACC6BAB00D7D53C /* MusicCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MusicCell.xib; sourceTree = "<group>"; };
 		960D3C6C2ACC786200D7D53C /* UIViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewProtocol.swift; sourceTree = "<group>"; };
+		963CE6C92ACD019500DFD2D6 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		963CE6CC2ACD028700DFD2D6 /* MusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicModel.swift; sourceTree = "<group>"; };
+		963CE6CE2ACD046400DFD2D6 /* iTunesAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesAPIService.swift; sourceTree = "<group>"; };
+		963CE6D02ACEAAB800DFD2D6 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		963CE6D22ACEC53400DFD2D6 /* BookmarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewModel.swift; sourceTree = "<group>"; };
 		96DB71D02ACBF06F00EDC188 /* iTunesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96DB71D32ACBF06F00EDC188 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96DB71D52ACBF06F00EDC188 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,8 +103,18 @@
 		960D3C6B2ACC6E4E00D7D53C /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				963CE6CE2ACD046400DFD2D6 /* iTunesAPIService.swift */,
+				963CE6D02ACEAAB800DFD2D6 /* APIService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		963CE6CB2ACD027200DFD2D6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				963CE6CC2ACD028700DFD2D6 /* MusicModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		96DB71C72ACBF06F00EDC188 = {
@@ -120,6 +140,7 @@
 		96DB71D22ACBF06F00EDC188 /* iTunesDemo */ = {
 			isa = PBXGroup;
 			children = (
+				963CE6CB2ACD027200DFD2D6 /* Model */,
 				960D3C6B2ACC6E4E00D7D53C /* Service */,
 				96DB72042ACBF19E00EDC188 /* Search */,
 				96DB72052ACBF1AE00EDC188 /* View */,
@@ -156,6 +177,8 @@
 			isa = PBXGroup;
 			children = (
 				96DB72062ACBF1C500EDC188 /* ListViewModel.swift */,
+				963CE6C92ACD019500DFD2D6 /* SearchViewModel.swift */,
+				963CE6D22ACEC53400DFD2D6 /* BookmarkViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -320,8 +343,13 @@
 			files = (
 				96DB71D82ACBF06F00EDC188 /* ViewController.swift in Sources */,
 				960D3C6D2ACC786200D7D53C /* UIViewProtocol.swift in Sources */,
+				963CE6D32ACEC53400DFD2D6 /* BookmarkViewModel.swift in Sources */,
+				963CE6CD2ACD028700DFD2D6 /* MusicModel.swift in Sources */,
+				963CE6CA2ACD019500DFD2D6 /* SearchViewModel.swift in Sources */,
+				963CE6D12ACEAAB800DFD2D6 /* APIService.swift in Sources */,
 				96DB71D42ACBF06F00EDC188 /* AppDelegate.swift in Sources */,
 				96DB72092ACBF75600EDC188 /* SearchResultViewController.swift in Sources */,
+				963CE6CF2ACD046400DFD2D6 /* iTunesAPIService.swift in Sources */,
 				96DB72072ACBF1C500EDC188 /* ListViewModel.swift in Sources */,
 				96DB71D62ACBF06F00EDC188 /* SceneDelegate.swift in Sources */,
 				960D3C682ACC6B6B00D7D53C /* MusicCell.swift in Sources */,

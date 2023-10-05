@@ -27,7 +27,7 @@ class ListViewModel<T> {
         task?.cancel()
         task = nil
     }
-    func updateData(_ results:[T]){
+    func inset(results:[T]){
         // 无数据
         if results.isEmpty && list.isEmpty {
             state = .empty

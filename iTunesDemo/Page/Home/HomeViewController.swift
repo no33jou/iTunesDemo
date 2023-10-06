@@ -7,13 +7,14 @@
 
 import UIKit
 import Combine
+
 class HomeViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     var searchBar: UISearchController {
         let resultVC = SearchResultViewController()
         let search = UISearchController(searchResultsController: resultVC)
 
-        search.searchBar.placeholder = Localiz.Home.searchPlaceholder.stringFromLocal()
+        search.searchBar.placeholder = Localiz.Home.searchPlaceholder.str
         search.obscuresBackgroundDuringPresentation = false
         search.delegate = self
         
@@ -24,7 +25,7 @@ class HomeViewController: UIViewController {
     var titleHeaderView: UILabel {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 26, weight: .bold)
-        label.text = "   \(Localiz.Home.bookmarkHeader.stringFromLocal())"
+        label.text = "   \(Localiz.Home.bookmarkHeader.str)"
         label.backgroundColor = .white
         return label
     }
@@ -40,7 +41,7 @@ class HomeViewController: UIViewController {
         viewModel.loadData()
     }
     func setupView() {
-        title = Localiz.Home.title.stringFromLocal()
+        title = Localiz.Home.title.str
         navigationItem.searchController = searchBar
         navigationItem.hidesSearchBarWhenScrolling = false
         

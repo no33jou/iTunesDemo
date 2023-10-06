@@ -27,7 +27,7 @@ struct AlbumCellViewModel: MusicCellViewModel {
         self.imageUrl = URL(string: data.artworkUrl100 ?? "")
         self.imageShape = .round(8)
         self.title = data.collectionName
-        self.detail = "\(Localiz.Search.album.stringFromLocal()) · \(data.artistName ?? "")"
+        self.detail = "\(Localiz.Search.album.str) · \(data.artistName ?? "")"
         if let url = data.collectionViewUrl{
             self.viewURL = URL(string: url)
         }

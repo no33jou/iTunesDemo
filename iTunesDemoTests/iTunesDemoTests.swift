@@ -180,7 +180,7 @@ final class iTunesDemoTests: XCTestCase {
         let viewModel = SongCellViewModel(s1)
         // 正确
         XCTAssertEqual(viewModel.title , s1.trackName)
-        XCTAssertEqual(viewModel.detail ?? "" ,"\(Localiz.Search.song.stringFromLocal()) · \(s1.artistName!)")
+        XCTAssertEqual(viewModel.detail ?? "" ,"\(Localiz.Search.song.str()) · \(s1.artistName!)")
         XCTAssertEqual(viewModel.viewURL,URL(string: s1.trackViewUrl!))
         XCTAssertEqual(viewModel.imageUrl,URL(string:s1.artworkUrl100!))
         //错误
@@ -189,7 +189,7 @@ final class iTunesDemoTests: XCTestCase {
         guard let album = self.ablum else { return }
         let vm = AlbumCellViewModel(album)
         XCTAssertEqual(vm.title , album.collectionName)
-        XCTAssertEqual(vm.detail ?? "" ,"\(Localiz.Search.album.stringFromLocal()) · \(album.artistName!)")
+        XCTAssertEqual(vm.detail ?? "" ,"\(Localiz.Search.album.str()) · \(album.artistName!)")
         XCTAssertEqual(vm.viewURL,URL(string: album.collectionViewUrl!))
         XCTAssertEqual(vm.imageUrl,URL(string:album.artworkUrl100!))
         
@@ -199,7 +199,7 @@ final class iTunesDemoTests: XCTestCase {
         let vm = ArtistCellViewModel(art)
         XCTAssertEqual(vm.title , art.artistName)
         XCTAssertNil(vm.detail)
-        XCTAssertNil(vm.viewURL)
+        XCTAssertEqual(vm.viewURL, URL(string: art.artistLinkUrl!))
         XCTAssertNil(vm.imageUrl)
     }
     func testBookmarkViewModel() throws {
@@ -224,9 +224,9 @@ final class iTunesDemoTests: XCTestCase {
         // Any test you write for XCTest can be annotated as throws and async.
         // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-        let viewModel = SearchViewModel()
-        viewModel.keywords = "zhou"
-        viewModel.fetchData()
+//        let viewModel = SearchViewModel()
+//        viewModel.keywords = "zhou"
+//        viewModel.fetchData()
     }
 
     func testPerformanceExample() throws {

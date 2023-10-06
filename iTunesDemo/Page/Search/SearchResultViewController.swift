@@ -35,7 +35,6 @@ class SearchResultViewController:UIViewController{
         tableView.rowHeight = 64
         tableView.sectionHeaderHeight = CGFLOAT_MIN
         tableView.register(MusicTableViewCell.nibFromClassName(), forCellReuseIdentifier: "cell")
-        
     }
     func bindView() {
         
@@ -53,7 +52,7 @@ class SearchResultViewController:UIViewController{
             }
         }.store(in: &cancellables)
      
-        viewModel.$showFilters.print().sink {[weak self] filters in
+        viewModel.$showFilters.sink {[weak self] filters in
             guard let this = self else { return }
             guard !filters.isEmpty else {
                 this.searchBar?.showsScopeBar = false
@@ -62,6 +61,16 @@ class SearchResultViewController:UIViewController{
             this.searchBar?.showsScopeBar = true
             this.searchBar?.scopeButtonTitles = filters
             this.searchBar?.selectedScopeButtonIndex = 0
+        }.store(in: &cancellables)
+        
+        viewModel.alertPublisher.sink {[weak self] text in
+            guard let this = self else { return }
+            let alert = UIAlertController(title: nil, message: text, preferredStyle: .alert)
+            this.present(alert, animated: true)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {[weak alert] in
+                guard let alert = alert else { return }
+                alert.dismiss(animated: false)
+            }
         }.store(in: &cancellables)
     }
 }
@@ -81,6 +90,9 @@ extension SearchResultViewController: UISearchBarDelegate{
     }
 }
 extension SearchResultViewController:UITableViewDelegate, UITableViewDataSource,UITableViewDataSourcePrefetching{
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        searchBar?.resignFirstResponder()
+    }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

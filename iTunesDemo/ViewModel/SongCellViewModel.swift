@@ -40,7 +40,7 @@ struct SongCellViewModel: MusicCellViewModel{
         self.title = data.trackName
         
         if let name = data.artistName {
-            self.detail = "\(Localiz.Search.song.stringFromLocal()) · \(name)"
+            self.detail = "\(Localiz.Search.song.str) · \(name)"
         }
         
         if let url = data.trackViewUrl{

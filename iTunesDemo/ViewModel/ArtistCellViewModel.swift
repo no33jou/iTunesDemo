@@ -28,8 +28,8 @@ struct ArtistCellViewModel: MusicCellViewModel {
         self.imageShape = .circle
         self.title = data.artistName
         
-//        if let url = data.artistLinkUrl{
-//            self.viewURL = URL(string: url)
-//        }
+        if let url = data.artistLinkUrl{
+            self.viewURL = URL(string: url)
+        }
     }
 }

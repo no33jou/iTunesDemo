@@ -28,7 +28,7 @@ class HomeViewController: UIViewController {
         label.backgroundColor = .white
         return label
     }
-    var viewModel = BookmarkViewModel()
+    var viewModel = BookmarkViewModel(BookmarkViewModelCase())
     var cancellables:[AnyCancellable] = []
     
     override func viewDidLoad() {

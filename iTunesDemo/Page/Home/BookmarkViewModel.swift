@@ -6,9 +6,16 @@
 //
 
 import Foundation
+protocol BookmarkViewModelCaseType {
+    func fetchBookmarkData() -> [MusicModel]
+    func updateBookmarkData(_ data:[MusicModel])
+}
 
 class BookmarkViewModel{
-    var data:[MusicModel] = []{
+    let useCase:BookmarkViewModelCaseType
+    @Published var displayData:[SongCellViewModel] = []
+    
+    private var data:[MusicModel] = []{
         didSet{
             displayData = data.map { SongCellViewModel($0) }.map({ v in
                 var vm = v
@@ -17,19 +24,19 @@ class BookmarkViewModel{
             })
         }
     }
-    @Published var displayData:[SongCellViewModel] = []
     
+    init(_ useCase: BookmarkViewModelCaseType) {
+        self.useCase = useCase
+    }
     func loadData(){
-        let data:[MusicModel] = UserDefaultDataStore.shared.get(key: .bookmark([])) ?? []
-        self.data = data
+        data = useCase.fetchBookmarkData()
     }
     func syncData(){
-        UserDefaultDataStore.shared.update(item: .bookmark(self.data))
+        useCase.updateBookmarkData(data)
     }
     
     func remove(index:Int){
         data.remove(at: index)
-        
         syncData()
     }
 }

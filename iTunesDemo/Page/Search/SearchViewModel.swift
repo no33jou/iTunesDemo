@@ -8,6 +8,11 @@
 import Combine
 import Foundation
 
+protocol SearchViewModelCaseType {
+    func searchMusic(keyword:String,medias:[MusicModel.MediaType],offset:Int) -> AnyPublisher<iTunesResponseResult<MusicModel>,APIFailure>?
+    func loadBookmark()->[MusicModel]
+    func updateBookmark(_ list:[MusicModel])
+}
 
 extension MusicModel.MediaType{
     func filterString() -> String {
@@ -24,6 +29,10 @@ extension MusicModel.MediaType{
     }
 }
 class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
+    let useCase:SearchViewModelCaseType
+    init(useCase: SearchViewModelCaseType) {
+        self.useCase = useCase
+    }
     override var list: [MusicModel] {
         didSet {
             refreshDisplayList()
@@ -48,9 +57,9 @@ class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
         }
     }
 
-    var keywork: String?
+    var keywords: String?
     /// 目前只支持全部媒体类型搜索
-    let mediaTypes = MusicModel.MediaType.all()
+    let mediaTypes = MusicModel.MediaType.all
     
     @Published var showLoading = false
     var displayPublisher = PassthroughSubject<Void, Never>()
@@ -85,14 +94,13 @@ class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
         }
     }
     var idsOfBoolmark:Set<Int> = []
-    
+    // MARK: - Search Network
     override func fetchData() {
         super.fetchData()
         
-        guard let keywork = keywork else { return }
+        guard let keywords = keywords else { return }
         showLoading = true
-        let api = iTunesAPI.search(keywork, mediaTypes, 0)
-            .fetch(type: iTunesResponseResult<MusicModel>.self)
+        let api = useCase.searchMusic(keyword: keywords, medias: mediaTypes, offset: listCount)
         
         task = api?.sink(receiveCompletion: { [weak self] completion in
             guard let this = self else { return }
@@ -112,9 +120,8 @@ class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
 
     override func fetchMoreData() {
         super.fetchMoreData()
-        guard let keywork = keywork else { return }
-        task = iTunesAPI.search(keywork, mediaTypes, listCount)
-            .fetch(type: iTunesResponseResult<MusicModel>.self)?
+        guard let keywork = keywords else { return }
+        task = useCase.searchMusic(keyword: keywork, medias: MusicModel.MediaType.all, offset:listCount)?
             .sink(receiveCompletion: { [weak self] completion in
                 guard let this = self else { return }
                 switch completion {
@@ -158,7 +165,7 @@ class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
 // MARK: - Bookmark
 extension SearchViewModel{
     func loadBookmark() {
-        listOfBookmark = UserDefaultDataStore.shared.get(key: .bookmark([])) ?? []
+        listOfBookmark = useCase.loadBookmark()
     }
     func insetBookmark(_ model:MusicModel){
         if model.mediaType != .song {
@@ -168,7 +175,7 @@ extension SearchViewModel{
             return
         }
         listOfBookmark.append(model)
-        UserDefaultDataStore.shared.update(item: .bookmark(listOfBookmark))
+        useCase.updateBookmark(listOfBookmark)
         refreshDisplayList()
     }
     func removeBookmark(_ id:Int){
@@ -176,7 +183,7 @@ extension SearchViewModel{
             return
         }
         listOfBookmark.removeAll { $0.trackId == id }
-        UserDefaultDataStore.shared.update(item: .bookmark(listOfBookmark))
+        useCase.updateBookmark(listOfBookmark)
         refreshDisplayList()
     }
 }

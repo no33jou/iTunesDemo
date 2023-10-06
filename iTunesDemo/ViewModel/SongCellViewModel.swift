@@ -37,7 +37,7 @@ struct SongCellViewModel: MusicCellViewModel{
             imageUrl = URL(string: url)
         }
         self.imageShape = .round(8)
-        self.title = data.collectionName
+        self.title = data.trackName
         
         if let name = data.artistName {
             self.detail = "\(Localiz.Search.song.stringFromLocal()) · \(name)"

@@ -31,7 +31,7 @@ extension MusicModel.MediaType {
     }
 }
 enum iTunesAPI {
-    case search(String, Set<MusicModel.MediaType>, Int)
+    case search(String, [MusicModel.MediaType], Int)
 }
 extension iTunesAPI: APIable {
     var path: String {

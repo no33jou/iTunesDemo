@@ -14,7 +14,7 @@ class SearchResultViewController:UIViewController{
     @IBOutlet weak var activityView: UIActivityIndicatorView!
     var searchBar:UISearchBar?
     
-    let viewModel = SearchViewModel()
+    let viewModel = SearchViewModel(useCase: SearchViewModelUseCase())
     var cancellables:[AnyCancellable] = []
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +70,7 @@ class SearchResultViewController:UIViewController{
 extension SearchResultViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.searchBar = searchBar
-        viewModel.keywork = searchBar.text
+        viewModel.keywords = searchBar.text
         viewModel.fetchData()
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

@@ -34,9 +34,7 @@ struct MusicModel: Codable {
         case song
         case album
         case unowned
-        static func all()->Set<Self>{
-            return [.artist,.song,.album]
-        }
+        static let all:[Self] = [.artist,.song,.album]
         init(_ str:String){
             switch str {
             case "artist":

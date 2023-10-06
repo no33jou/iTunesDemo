@@ -23,6 +23,7 @@
 		963CE6DF2ACFC66600DFD2D6 /* ArtistCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CE6DE2ACFC66600DFD2D6 /* ArtistCellViewModel.swift */; };
 		963CE6E72AD008E800DFD2D6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 963CE6E62AD008E800DFD2D6 /* Localizable.xcstrings */; };
 		963CE6E92AD009DB00DFD2D6 /* Localiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CE6E82AD009DB00DFD2D6 /* Localiz.swift */; };
+		963CE6EB2AD02BD400DFD2D6 /* BookmarkViewModelCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CE6EA2AD02BD400DFD2D6 /* BookmarkViewModelCase.swift */; };
 		96DB71D42ACBF06F00EDC188 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DB71D32ACBF06F00EDC188 /* AppDelegate.swift */; };
 		96DB71D62ACBF06F00EDC188 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DB71D52ACBF06F00EDC188 /* SceneDelegate.swift */; };
 		96DB71D82ACBF06F00EDC188 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DB71D72ACBF06F00EDC188 /* HomeViewController.swift */; };
@@ -74,6 +75,7 @@
 		963CE6E32ACFE05300DFD2D6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		963CE6E62AD008E800DFD2D6 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		963CE6E82AD009DB00DFD2D6 /* Localiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localiz.swift; sourceTree = "<group>"; };
+		963CE6EA2AD02BD400DFD2D6 /* BookmarkViewModelCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewModelCase.swift; sourceTree = "<group>"; };
 		96DB71D02ACBF06F00EDC188 /* iTunesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96DB71D32ACBF06F00EDC188 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96DB71D52ACBF06F00EDC188 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			children = (
 				963CE6D22ACEC53400DFD2D6 /* BookmarkViewModel.swift */,
 				96DB71D72ACBF06F00EDC188 /* HomeViewController.swift */,
+				963CE6EA2AD02BD400DFD2D6 /* BookmarkViewModelCase.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				96DB71D82ACBF06F00EDC188 /* HomeViewController.swift in Sources */,
 				960D3C6D2ACC786200D7D53C /* UIViewProtocol.swift in Sources */,
 				963CE6D32ACEC53400DFD2D6 /* BookmarkViewModel.swift in Sources */,
+				963CE6EB2AD02BD400DFD2D6 /* BookmarkViewModelCase.swift in Sources */,
 				963CE6CD2ACD028700DFD2D6 /* MusicModel.swift in Sources */,
 				963CE6DF2ACFC66600DFD2D6 /* ArtistCellViewModel.swift in Sources */,
 				963CE6CA2ACD019500DFD2D6 /* SearchViewModel.swift in Sources */,

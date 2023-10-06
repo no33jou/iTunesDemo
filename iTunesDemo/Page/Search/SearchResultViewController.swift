@@ -12,6 +12,7 @@ import Combine
 class SearchResultViewController:UIViewController{
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityView: UIActivityIndicatorView!
+    var searchBar:UISearchBar?
     
     let viewModel = SearchViewModel()
     var cancellables:[AnyCancellable] = []
@@ -37,7 +38,8 @@ class SearchResultViewController:UIViewController{
         
     }
     func bindView() {
-        viewModel.$displayList.receive(on: RunLoop.main).sink { [weak self] _ in
+        
+        viewModel.displayPublisher.sink { [weak self] _ in
             guard let this = self else { return }
             this.tableView.reloadData()
         }.store(in: &cancellables)
@@ -50,18 +52,32 @@ class SearchResultViewController:UIViewController{
                 this.activityView.stopAnimating()
             }
         }.store(in: &cancellables)
-        
+     
+        viewModel.$showFilters.print().sink {[weak self] filters in
+            guard let this = self else { return }
+            guard !filters.isEmpty else {
+                this.searchBar?.showsScopeBar = false
+                return
+            }
+            this.searchBar?.showsScopeBar = true
+            this.searchBar?.scopeButtonTitles = filters
+            this.searchBar?.selectedScopeButtonIndex = 0
+        }.store(in: &cancellables)
     }
 }
 
 // MARK: - Delegate
 extension SearchResultViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.searchBar = searchBar
         viewModel.keywork = searchBar.text
         viewModel.fetchData()
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         viewModel.resetData()
+    }
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        viewModel.indexOfSelectedFilter = selectedScope
     }
 }
 extension SearchResultViewController:UITableViewDelegate, UITableViewDataSource,UITableViewDataSourcePrefetching{
@@ -85,6 +101,13 @@ extension SearchResultViewController:UITableViewDelegate, UITableViewDataSource,
             }
         })
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vm = viewModel.displayList[indexPath.row]
+        if let url = vm.viewURL,
+           UIApplication.shared.canOpenURL(url){
+            UIApplication.shared.open(url)
+        }
     }
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         // 当选择中筛选方式后无法加载更多数据

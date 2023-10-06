@@ -7,26 +7,44 @@
 
 import Combine
 import Foundation
+
+
+extension MusicModel.MediaType{
+    func filterString() -> String {
+        switch self {
+        case .artist:
+            return Localiz.Search.artist.stringFromLocal()
+        case .song:
+            return Localiz.Search.song.stringFromLocal()
+        case .album:
+            return Localiz.Search.album.stringFromLocal()
+        case .unowned:
+            return "unowned"
+        }
+    }
+}
 class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
     override var list: [MusicModel] {
         didSet {
             refreshDisplayList()
-            filters = Set(list.map { $0.mediaType })
+            filters = Set(list.map { $0.mediaType }).map({ $0 })
         }
     }
 
-    var filters: Set<MusicModel.MediaType> = [] {
+    var filters: [MusicModel.MediaType] = [] {
         didSet {
+            indexOfSelectedFilter = 0
             if filters.isEmpty {
-                showFilters = []
+                self.showFilters = []
                 return
             }
             
-//            var list = filters.map { type in
-//                type.localString()
-//            }
-//            list.insert(Local.Search.all.rawValue, at: 0)
-//            showFilters = list
+            var list = filters.map { type in
+                type.filterString()
+            }
+            
+            list.insert(Localiz.Search.all.stringFromLocal(), at: 0)
+            self.showFilters = list
         }
     }
 
@@ -35,20 +53,31 @@ class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
     let mediaTypes = MusicModel.MediaType.all()
     
     @Published var showLoading = false
-    @Published var displayList: [MusicCellViewModel] = []
-    /// 当前数据支持的筛选类型
+    var displayPublisher = PassthroughSubject<Void, Never>()
+    var displayList: [MusicCellViewModel] = []{
+        didSet{
+            displayPublisher.send()
+        }
+    }
+    
+    /// 当前数据支持的 筛选媒体类型文本集
     @Published var showFilters: [String] = []
     /// 选择 筛选的下标， 默认值为0 即全部
-    var selectIndexOfFilter:Int = 0{
+    var indexOfSelectedFilter:Int = 0{
         didSet{
-            if selectIndexOfFilter == 0{
+            if indexOfSelectedFilter == 0{
                 selectMediaType = nil
                 return
             }
+           selectMediaType = filters[indexOfSelectedFilter - 1]
         }
     }
     /// 选择的媒体类型
-    var selectMediaType: MusicModel.MediaType?
+    var selectMediaType: MusicModel.MediaType?{
+        didSet{
+            refreshDisplayList()
+        }
+    }
     
     var listOfBookmark:[MusicModel] = []{
         didSet{
@@ -102,7 +131,7 @@ class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
     }
 
     func refreshDisplayList() {
-        self.selectIndexOfFilter = 0
+        
         var list = self.list
         if let filterType = selectMediaType {
             list = list.filter { $0.mediaType == filterType }

@@ -93,6 +93,29 @@
         }
       }
     },
+    "Search.all" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Top Results"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最佳结果"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最佳結果"
+          }
+        }
+      }
+    },
     "Search.artist" : {
       "extractionState" : "manual",
       "localizations" : {

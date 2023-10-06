@@ -27,5 +27,6 @@ enum Localiz {
         case song
         case album
         case artist
+        case all
     }
 }

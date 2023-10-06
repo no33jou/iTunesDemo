@@ -60,6 +60,9 @@ extension SearchResultViewController: UISearchBarDelegate{
         viewModel.keywork = searchBar.text
         viewModel.fetchData()
     }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.resetData()
+    }
 }
 extension SearchResultViewController:UITableViewDelegate, UITableViewDataSource,UITableViewDataSourcePrefetching{
     func numberOfSections(in tableView: UITableView) -> Int {

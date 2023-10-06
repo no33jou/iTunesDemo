@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  iTunesDemo
 //
 //  Created by yaojunren on 2023/10/3.
@@ -7,7 +7,7 @@
 
 import UIKit
 import Combine
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     var searchBar: UISearchController {
         let resultVC = SearchResultViewController()
@@ -60,7 +60,7 @@ class ViewController: UIViewController {
 
 // MARK: - Delegate
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.viewModel.displayData.isEmpty ? 0:1
     }
@@ -90,7 +90,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
-extension ViewController:UISearchControllerDelegate{
+extension HomeViewController:UISearchControllerDelegate{
     func willDismissSearchController(_ searchController: UISearchController) {
         viewModel.loadData()
     }

@@ -13,7 +13,7 @@ class HomeViewController: UIViewController {
         let resultVC = SearchResultViewController()
         let search = UISearchController(searchResultsController: resultVC)
 
-        search.searchBar.placeholder = "xxxxxxxx"
+        search.searchBar.placeholder = Localiz.Home.searchPlaceholder.stringFromLocal()
         search.obscuresBackgroundDuringPresentation = false
         search.delegate = self
         
@@ -24,7 +24,7 @@ class HomeViewController: UIViewController {
     var titleHeaderView: UILabel {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 26, weight: .bold)
-        label.text = "   收藏夹"
+        label.text = "   \(Localiz.Home.bookmarkHeader.stringFromLocal())"
         label.backgroundColor = .white
         return label
     }
@@ -40,6 +40,7 @@ class HomeViewController: UIViewController {
         viewModel.loadData()
     }
     func setupView() {
+        title = Localiz.Home.title.stringFromLocal()
         navigationItem.searchController = searchBar
         navigationItem.hidesSearchBarWhenScrolling = false
         

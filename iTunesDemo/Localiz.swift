@@ -10,7 +10,9 @@ protocol Localizable {}
 
 extension Localizable {
     func stringFromLocal() -> String {
-        return NSLocalizedString(String(describing: self), comment: "")
+        let prefix = String(describing: type(of: self)).split(separator: ".").last ?? ""
+        let key = prefix + "." + String(describing: self)
+        return NSLocalizedString(key, comment: "")
     }
 }
 
@@ -18,6 +20,7 @@ enum Localiz {
     enum Home: Localizable {
         case title
         case bookmarkHeader
+        case searchPlaceholder
     }
 
     enum Search: Localizable {

@@ -18,11 +18,11 @@ extension MusicModel.MediaType{
     func filterString() -> String {
         switch self {
         case .artist:
-            return Localiz.Search.artist.stringFromLocal()
+            return Localiz.Search.artist.str
         case .song:
-            return Localiz.Search.song.stringFromLocal()
+            return Localiz.Search.song.str
         case .album:
-            return Localiz.Search.album.stringFromLocal()
+            return Localiz.Search.album.str
         case .unowned:
             return "unowned"
         }
@@ -33,6 +33,7 @@ class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
     init(useCase: SearchViewModelCaseType) {
         self.useCase = useCase
     }
+    // MARK: - List property
     override var list: [MusicModel] {
         didSet {
             refreshDisplayList()
@@ -52,7 +53,7 @@ class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
                 type.filterString()
             }
             
-            list.insert(Localiz.Search.all.stringFromLocal(), at: 0)
+            list.insert(Localiz.Search.all.str, at: 0)
             self.showFilters = list
         }
     }
@@ -87,13 +88,16 @@ class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
             refreshDisplayList()
         }
     }
-    
+    // MARK: - Bookmark property
     var listOfBookmark:[MusicModel] = []{
         didSet{
             idsOfBoolmark = Set(listOfBookmark.map({ $0.trackId ?? 0 }))
         }
     }
     var idsOfBoolmark:Set<Int> = []
+    
+    // MARK: - Alert
+    let alertPublisher = PassthroughSubject<String,Never>()
     // MARK: - Search Network
     override func fetchData() {
         super.fetchData()
@@ -108,7 +112,7 @@ class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
             switch completion {
             case let .failure(fail):
                 this.state = .error
-                print(fail)
+                this.alertFromNetowork(error: fail)
             default:
                 break
             }
@@ -127,7 +131,7 @@ class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
                 switch completion {
                 case let .failure(fail):
                     this.state = .error
-                    print(fail)
+                    this.alertFromNetowork(error: fail)
                 default:
                     break
                 }
@@ -136,7 +140,14 @@ class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
                 this.inset(results: result.results ?? [])
             })
     }
-
+    func alertFromNetowork(error: APIFailure){
+        switch error {
+        case .network:
+            alertPublisher.send(Localiz.Alert.networkError.str)
+        default:
+            alertPublisher.send(Localiz.Alert.unownedError.str)
+        }
+    }
     func refreshDisplayList() {
         
         var list = self.list
@@ -162,7 +173,7 @@ class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
         self.displayList = displayData
     }
 }
-// MARK: - Bookmark
+// MARK: - Bookmark Func
 extension SearchViewModel{
     func loadBookmark() {
         listOfBookmark = useCase.loadBookmark()

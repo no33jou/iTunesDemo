@@ -9,7 +9,7 @@ import Foundation
 protocol Localizable {}
 
 extension Localizable {
-    func stringFromLocal() -> String {
+    var str: String {
         let prefix = String(describing: type(of: self)).split(separator: ".").last ?? ""
         let key = prefix + "." + String(describing: self)
         return NSLocalizedString(key, comment: "")
@@ -22,7 +22,10 @@ enum Localiz {
         case bookmarkHeader
         case searchPlaceholder
     }
-
+    enum Alert: Localizable {
+        case networkError
+        case unownedError
+    }
     enum Search: Localizable {
         case song
         case album

@@ -5,23 +5,29 @@
 //  Created by yaojunren on 2023/10/5.
 //
 
-import Foundation
 import Combine
-protocol APIable{
-    var request:URLRequest?{ get }
+import Foundation
+protocol APIable {
+    var request: URLRequest? { get }
 }
 
-enum APIFailure:Error {
+enum APIFailure: Error {
     case decode
     case network
     case unowned
 }
-class APIService{
-    static let shared = APIService()
-    private init(){
+
+extension APIable {
+    func fetch<T: Codable>(type: T.Type) -> AnyPublisher<T, APIFailure>? {
+        APIService.shared.fetch(api: self, type: T.self)
     }
-    
-    func fetch<T:Codable>(api:APIable) -> AnyPublisher<T,APIFailure>?  {
+}
+
+class APIService {
+    static let shared = APIService()
+    private init() {}
+
+    func fetch<T: Codable>(api: any APIable, type: T.Type) -> AnyPublisher<T, APIFailure>? {
         guard let request = api.request else {
             assertionFailure("APIService:Not request from \(api.self)")
             return nil
@@ -30,8 +36,8 @@ class APIService{
             .map(\.data)
             .decode(type: T.self, decoder: JSONDecoder())
             .receive(on: DispatchSerialQueue.main)
-            .mapError({ error in
-                switch error{
+            .mapError { error in
+                switch error {
                 case is URLError:
                     return APIFailure.network
                 case is EncodingError:
@@ -39,9 +45,9 @@ class APIService{
                 default:
                     return APIFailure.unowned
                 }
-            })
+            }
             .eraseToAnyPublisher()
-            
+
         return task
     }
 }

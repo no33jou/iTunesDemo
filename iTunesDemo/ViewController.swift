@@ -14,6 +14,8 @@ class ViewController: UIViewController {
         let search = UISearchController(searchResultsController: resultVC)
         search.searchBar.placeholder = "xxxxxxxx"
         search.obscuresBackgroundDuringPresentation = false
+        
+        search.searchBar.delegate = resultVC
         return search
     }
     
@@ -25,7 +27,7 @@ class ViewController: UIViewController {
         return label
     }
     var viewModel = BookmarkViewModel()
-    var cancles:[AnyCancellable] = []
+    var cancellables:[AnyCancellable] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,13 +49,15 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.estimatedRowHeight = 64
+        tableView.rowHeight = 64
         tableView.sectionHeaderHeight = 48
-        tableView.register(MusicCell.nibFromClassName(), forCellReuseIdentifier: "cell")
+        tableView.register(MusicTableViewCell.nibFromClassName(), forCellReuseIdentifier: "cell")
     }
 
     func bindView() {
-        
+        viewModel.$displayData.sink { [weak self] _ in
+            self?.tableView.reloadData()
+        }.store(in: &cancellables)
     }
 }
 
@@ -61,7 +65,7 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return self.viewModel.displayData.isEmpty ? 0:1
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -69,12 +73,23 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return viewModel.displayData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MusicTableViewCell
+        cell.viewModel = viewModel.displayData[indexPath.row]
+        cell.cancellable?.cancel()
+        cell.cancellable = cell.tapPubluic.sink(receiveValue: { [weak self] vm in
+            guard let this = self else { return  }
+            this.viewModel.remove(index: indexPath.row)
+        })
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vm = viewModel.displayData[indexPath.row]
+        if let url = vm.viewURL,UIApplication.shared.canOpenURL(url){
+            UIApplication.shared.open(url)
+        }
     }
 }

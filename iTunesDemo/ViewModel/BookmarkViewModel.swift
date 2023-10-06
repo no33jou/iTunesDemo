@@ -8,7 +8,17 @@
 import Foundation
 
 class BookmarkViewModel{
-    var data:[MusicModel] = []
+    var data:[MusicModel] = []{
+        didSet{
+            displayData = data.map { SongCellViewModel($0) }.map({ v in
+                var vm = v
+                vm.isBookmark = true
+                return vm
+            })
+//            let artis = Set(data.map({$0.trackId}))
+        }
+    }
+    @Published var displayData:[SongCellViewModel] = []
     
     func loadData(){
         let data = UserDefaultDataStore.shared.get(key: .bookmark([])) as? [MusicModel]
@@ -19,6 +29,11 @@ class BookmarkViewModel{
     }
     func insert(song:MusicModel){
         self.data.append(song)
+        
+        syncData()
+    }
+    func remove(index:Int){
+        data.remove(at: index)
         
         syncData()
     }

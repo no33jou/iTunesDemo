@@ -15,11 +15,12 @@ class ListViewModel<T> {
         case normal
         case empty
         case noMore
+        // 错误：网络错误、数据结构错误
         case error
         case loading
     }
     var state:DataState = .normal
-    var task:Cancellable?
+    var task:AnyCancellable?
     func resetData() {
         list = []
         state = .normal
@@ -47,9 +48,11 @@ class ListViewModel<T> {
         state = .loading
     }
     func fetchMoreData(){
-        if state != .normal {
+        if state != .normal && state != .error {
             return
         }
         state = .loading
+        task?.cancel()
+        task = nil
     }
 }

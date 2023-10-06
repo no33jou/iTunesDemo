@@ -17,9 +17,10 @@ struct MusicModel: Codable {
     let artistName, artistViewUrl: String?
     let artistLinkUrl,artworkUrl100, artworkUrl30,artworkUrl60: String?
     
-    let collectionCensoredName: String?
     let collectionId: Int?
     let collectionName: String?
+    let collectionViewUrl: String?
+    
     
     let trackId: Int?
     let trackName: String?

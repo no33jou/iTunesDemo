@@ -12,8 +12,10 @@ class ViewController: UIViewController {
     var searchBar: UISearchController {
         let resultVC = SearchResultViewController()
         let search = UISearchController(searchResultsController: resultVC)
+
         search.searchBar.placeholder = "xxxxxxxx"
         search.obscuresBackgroundDuringPresentation = false
+        search.delegate = self
         
         search.searchBar.delegate = resultVC
         return search
@@ -35,13 +37,8 @@ class ViewController: UIViewController {
         
         setupView()
         bindView()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         viewModel.loadData()
     }
-
     func setupView() {
         navigationItem.searchController = searchBar
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -55,7 +52,7 @@ class ViewController: UIViewController {
     }
 
     func bindView() {
-        viewModel.$displayData.sink { [weak self] _ in
+        viewModel.$displayData.receive(on: RunLoop.main).sink { [weak self] _ in
             self?.tableView.reloadData()
         }.store(in: &cancellables)
     }
@@ -91,5 +88,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         if let url = vm.viewURL,UIApplication.shared.canOpenURL(url){
             UIApplication.shared.open(url)
         }
+    }
+}
+extension ViewController:UISearchControllerDelegate{
+    func willDismissSearchController(_ searchController: UISearchController) {
+        viewModel.loadData()
     }
 }

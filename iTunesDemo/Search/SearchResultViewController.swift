@@ -21,6 +21,11 @@ class SearchResultViewController:UIViewController{
         setupView()
         bindView()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        viewModel.loadBookmark()
+    }
     func setupView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -67,9 +72,14 @@ extension SearchResultViewController:UITableViewDelegate, UITableViewDataSource,
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? MusicTableViewCell ?? MusicTableViewCell()
         cell.viewModel = viewModel.displayList[indexPath.row]
         cell.cancellable?.cancel()
-        cell.cancellable = cell.tapPubluic.sink(receiveValue: {[weak self] deta in
+        cell.cancellable = cell.tapPubluic.sink(receiveValue: {[weak self] data in
             guard let this = self else { return }
-        
+            guard let vm = data as? SongCellViewModel else { return  }
+            if vm.isBookmark {
+                this.viewModel.removeBookmark(vm.data.trackId ?? 0)
+            }else{
+                this.viewModel.insetBookmark(vm.data)
+            }
         })
         return cell
     }

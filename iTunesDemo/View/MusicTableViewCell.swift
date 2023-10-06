@@ -17,7 +17,7 @@ protocol MusicCellViewModel {
 
     var actionItem: ActionItem? { get }
     /// 跳转到Music iTunes 的链接
-    var viewURL:URL?{ get }
+    var viewURL: URL? { get }
 }
 
 class MusicTableViewCell: UITableViewCell, NibFromClassNameble {
@@ -66,11 +66,13 @@ class MusicTableViewCell: UITableViewCell, NibFromClassNameble {
             }
         }
     }
-    public var cancellable:AnyCancellable?
+
+    public var cancellable: AnyCancellable?
     public var tapPubluic = PassthroughSubject<MusicCellViewModel, Never>()
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        rightButton.setTitle(nil, for: .normal)
         rightButton.addTarget(self, action: #selector(tapRightButton), for: .touchUpInside)
     }
 

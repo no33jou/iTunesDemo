@@ -50,6 +50,13 @@ class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
     /// 选择的媒体类型
     var selectMediaType: MusicModel.MediaType?
     
+    var listOfBookmark:[MusicModel] = []{
+        didSet{
+            idsOfBoolmark = Set(listOfBookmark.map({ $0.trackId ?? 0 }))
+        }
+    }
+    var idsOfBoolmark:Set<Int> = []
+    
     override func fetchData() {
         super.fetchData()
         
@@ -106,7 +113,9 @@ class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
             case .artist:
                 return ArtistCellViewModel(model)
             case .song:
-                return SongCellViewModel(model)
+                var vm = SongCellViewModel(model)
+                vm.isBookmark = idsOfBoolmark.contains(model.trackId ?? 0)
+                return vm
             case .album:
                 return AlbumCellViewModel(model)
             case .unowned:
@@ -115,5 +124,30 @@ class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
             }
         }
         self.displayList = displayData
+    }
+}
+// MARK: - Bookmark
+extension SearchViewModel{
+    func loadBookmark() {
+        listOfBookmark = UserDefaultDataStore.shared.get(key: .bookmark([])) ?? []
+    }
+    func insetBookmark(_ model:MusicModel){
+        if model.mediaType != .song {
+            return
+        }
+        if idsOfBoolmark.contains(model.trackId ?? 0){
+            return
+        }
+        listOfBookmark.append(model)
+        UserDefaultDataStore.shared.update(item: .bookmark(listOfBookmark))
+        refreshDisplayList()
+    }
+    func removeBookmark(_ id:Int){
+        if !idsOfBoolmark.contains(id){
+            return
+        }
+        listOfBookmark.removeAll { $0.trackId == id }
+        UserDefaultDataStore.shared.update(item: .bookmark(listOfBookmark))
+        refreshDisplayList()
     }
 }

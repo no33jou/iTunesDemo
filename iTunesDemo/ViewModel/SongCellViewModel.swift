@@ -24,7 +24,11 @@ struct SongCellViewModel: MusicCellViewModel{
     
     var viewURL: URL?
     /// 是否被收藏
-    var isBookmark = false
+    var isBookmark = false{
+        didSet{
+            actionItem = .button(UIImage(systemName: isBookmark ? "star.fill" : "star")!)
+        }
+    }
     
     init(_ data:MusicModel){
         self.data = data
@@ -38,7 +42,6 @@ struct SongCellViewModel: MusicCellViewModel{
         if let name = data.artistName {
             self.detail = "xxx \(name)"
         }
-        actionItem = .button(UIImage(systemName: isBookmark ? "star.fill" : "star")!)
         
         if let url = data.trackViewUrl{
             self.viewURL = URL(string: url)

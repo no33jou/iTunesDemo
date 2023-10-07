@@ -9,12 +9,12 @@ import Foundation
 
 struct BookmarkViewModelCase: BookmarkViewModelCaseType {
     func fetchBookmarkData() -> [MusicModel] {
-        let data:[MusicModel] = UserDefaultDataStore.shared.get(key: .bookmark([])) ?? []
+        let data = BookmarkKind.whereStore(.userDefault).get() ?? []
         return data
     }
     
     func updateBookmarkData(_ data: [MusicModel]) {
-        UserDefaultDataStore.shared.update(item: .bookmark(data))
+        BookmarkKind.whereStore(.userDefault).update(data: data)
     }
 }
 

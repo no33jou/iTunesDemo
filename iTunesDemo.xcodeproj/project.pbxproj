@@ -10,6 +10,7 @@
 		960D3C682ACC6B6B00D7D53C /* MusicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960D3C672ACC6B6B00D7D53C /* MusicTableViewCell.swift */; };
 		960D3C6A2ACC6BAB00D7D53C /* MusicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 960D3C692ACC6BAB00D7D53C /* MusicTableViewCell.xib */; };
 		960D3C6D2ACC786200D7D53C /* UIViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960D3C6C2ACC786200D7D53C /* UIViewProtocol.swift */; };
+		96350E4B2AD1381600E119D3 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96350E4A2AD1381600E119D3 /* DataStore.swift */; };
 		963CE6C82ACCFF0800DFD2D6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 963CE6C72ACCFF0800DFD2D6 /* Kingfisher */; };
 		963CE6CA2ACD019500DFD2D6 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CE6C92ACD019500DFD2D6 /* SearchViewModel.swift */; };
 		963CE6CD2ACD028700DFD2D6 /* MusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CE6CC2ACD028700DFD2D6 /* MusicModel.swift */; };
@@ -60,6 +61,7 @@
 		960D3C672ACC6B6B00D7D53C /* MusicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTableViewCell.swift; sourceTree = "<group>"; };
 		960D3C692ACC6BAB00D7D53C /* MusicTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MusicTableViewCell.xib; sourceTree = "<group>"; };
 		960D3C6C2ACC786200D7D53C /* UIViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewProtocol.swift; sourceTree = "<group>"; };
+		96350E4A2AD1381600E119D3 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		963CE6C92ACD019500DFD2D6 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		963CE6CC2ACD028700DFD2D6 /* MusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicModel.swift; sourceTree = "<group>"; };
 		963CE6CE2ACD046400DFD2D6 /* iTunesAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesAPIService.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 		963CE6D52ACEC9A600DFD2D6 /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
+				96350E4A2AD1381600E119D3 /* DataStore.swift */,
 				963CE6D62ACECA4F00DFD2D6 /* DataStoreProtocol.swift */,
 				963CE6D82ACECA7A00DFD2D6 /* UserDefaultDataStore.swift */,
 			);
@@ -414,6 +417,7 @@
 				960D3C6D2ACC786200D7D53C /* UIViewProtocol.swift in Sources */,
 				963CE6D32ACEC53400DFD2D6 /* BookmarkViewModel.swift in Sources */,
 				963CE6EB2AD02BD400DFD2D6 /* BookmarkViewModelCase.swift in Sources */,
+				96350E4B2AD1381600E119D3 /* DataStore.swift in Sources */,
 				963CE6CD2ACD028700DFD2D6 /* MusicModel.swift in Sources */,
 				963CE6DF2ACFC66600DFD2D6 /* ArtistCellViewModel.swift in Sources */,
 				963CE6CA2ACD019500DFD2D6 /* SearchViewModel.swift in Sources */,
@@ -672,7 +676,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H9X2RYSPF2;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Yaoye.iTunesDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -692,7 +696,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H9X2RYSPF2;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Yaoye.iTunesDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

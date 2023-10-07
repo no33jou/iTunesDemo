@@ -7,29 +7,36 @@
 
 import Foundation
 
-enum DataStoreKind{
-    case bookmark([MusicModel])
-    
-    var key:String {
-        switch self {
-        case .bookmark:
-            return "bookmark"
-        default:
-            assertionFailure("DataStoreKind \(self): No Key define!")
-            return ""
-        }
+protocol DataKindable{
+    associatedtype T:Codable
+    static var key:String { get }
+}
+
+protocol DataStoreable {
+    func update<T:Codable>(key:String,data: T)
+    func remove(key: String)
+    func get<T:Codable>(key: String) -> T?
+}
+struct DataStoreService<T:Codable>{
+    let key:String
+    let store:DataStoreable
+    init(key: String, store: DataStoreable) {
+        self.key = key
+        self.store = store
     }
-    var value:Codable{
-        switch self{
-        case let .bookmark(data):
-            return data
-        default:
-            assertionFailure("DataStoreKind \(self):No Value define!")
-        }
+    func update(data:T){
+        store.update(key: key, data: data)
+    }
+    func remove(){
+        store.remove(key: key)
+    }
+    func get()->T?{
+        store.get(key: key)
     }
 }
-protocol DataStore {
-    func update(item: DataStoreKind)
-    func remove(item: DataStoreKind)
-    func get(key: DataStoreKind) -> Codable?
+extension DataKindable{
+   static func whereStore(_ store: DataStoreable) -> DataStoreService<T>{
+        let service = DataStoreService<T>(key: key, store:store)
+        return service
+    }
 }

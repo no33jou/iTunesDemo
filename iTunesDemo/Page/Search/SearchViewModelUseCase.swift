@@ -14,13 +14,12 @@ struct SearchViewModelUseCase: SearchViewModelCaseType {
             .fetch(type: iTunesResponseResult<MusicModel>.self)
     }
     
-    
     func loadBookmark() -> [MusicModel] {
-        let data:[MusicModel] = UserDefaultDataStore.shared.get(key: .bookmark([])) ?? []
+        let data = BookmarkKind.whereStore(.userDefault).get() ?? []
         return data
     }
     
     func updateBookmark(_ list: [MusicModel]) {
-        UserDefaultDataStore.shared.update(item: .bookmark(list))
+        BookmarkKind.whereStore(.userDefault).update(data: list)
     }
 }

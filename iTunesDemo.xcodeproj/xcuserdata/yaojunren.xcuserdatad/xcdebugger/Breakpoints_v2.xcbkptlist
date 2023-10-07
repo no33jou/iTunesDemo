@@ -39,6 +39,38 @@
             endingLineNumber = "71"
             landmarkName = "bindView()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A6A96752-01E0-42DD-B76C-7B38D2D6D50E - 701e964e84b2a62a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (Swift.String) -&gt; () in iTunesDemo.SearchResultViewController.bindView() -&gt; ()"
+                  moduleName = "iTunesDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yaojunren/Desktop/iTunesDemo/iTunesDemo/Page/Search/SearchResultViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "560">
+               </Location>
+               <Location
+                  uuid = "A6A96752-01E0-42DD-B76C-7B38D2D6D50E - 638d9acb493fc59c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #4 (Swift.String) -&gt; () in iTunesDemo.SearchResultViewController.bindView() -&gt; ()"
+                  moduleName = "iTunesDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yaojunren/Desktop/iTunesDemo/iTunesDemo/Page/Search/SearchResultViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "148">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -55,6 +87,53 @@
             endingLineNumber = "70"
             landmarkName = "bindView()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E5952D10-A31D-40E3-8E1E-1A1AAEE120DE - 701e964e84b2a645"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (Swift.String) -&gt; () in iTunesDemo.SearchResultViewController.bindView() -&gt; ()"
+                  moduleName = "iTunesDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yaojunren/Desktop/iTunesDemo/iTunesDemo/Page/Search/SearchResultViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "484">
+               </Location>
+               <Location
+                  uuid = "E5952D10-A31D-40E3-8E1E-1A1AAEE120DE - 701e964e84b2a645"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (Swift.String) -&gt; () in iTunesDemo.SearchResultViewController.bindView() -&gt; ()"
+                  moduleName = "iTunesDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yaojunren/Desktop/iTunesDemo/iTunesDemo/Page/Search/SearchResultViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "588">
+               </Location>
+               <Location
+                  uuid = "E5952D10-A31D-40E3-8E1E-1A1AAEE120DE - 638d9acb493fc5f3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #4 (Swift.String) -&gt; () in iTunesDemo.SearchResultViewController.bindView() -&gt; ()"
+                  moduleName = "iTunesDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yaojunren/Desktop/iTunesDemo/iTunesDemo/Page/Search/SearchResultViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

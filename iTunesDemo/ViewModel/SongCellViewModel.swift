@@ -47,5 +47,6 @@ struct SongCellViewModel: MusicCellViewModel{
             self.viewURL = URL(string: url)
         }
 
+        actionItem = .button(UIImage(systemName: isBookmark ? "star.fill" : "star")!)
     }
 }

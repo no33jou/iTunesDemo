@@ -48,9 +48,6 @@ class ListViewModel<T> {
         state = .loading
     }
     func fetchMoreData(){
-        if state != .normal && state != .error {
-            return
-        }
         state = .loading
         task?.cancel()
         task = nil

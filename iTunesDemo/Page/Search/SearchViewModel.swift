@@ -123,6 +123,12 @@ class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
     }
 
     override func fetchMoreData() {
+        if state != .normal && state != .error {
+            return
+        }
+        if self.selectMediaType != nil{
+            return
+        }
         super.fetchMoreData()
         guard let keywork = keywords else { return }
         task = useCase.searchMusic(keyword: keywork, medias: MusicModel.MediaType.all, offset:listCount)?

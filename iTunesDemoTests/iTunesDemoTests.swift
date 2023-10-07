@@ -7,6 +7,7 @@
 
 import XCTest
 @testable import iTunesDemo
+import Combine
 let song1 = """
 {
   "wrapperType": "track",
@@ -77,7 +78,7 @@ let song2 = """
   "isStreamable": true
 }
 """.data(using: .utf8)
-let error1 = """
+let movieJson = """
 {
   "wrapperType": "track",
   "kind": "feature-movie",
@@ -153,22 +154,42 @@ struct BookmarkViewModelTestCase: BookmarkViewModelCaseType {
         print(data)
     }
 }
-
+struct SearchViewModelTestCase: SearchViewModelCaseType {
+    let list:[MusicModel]
+    let bookmark:[MusicModel]
+    func searchMusic(keyword: String, medias: [iTunesDemo.MusicModel.MediaType], offset: Int) -> AnyPublisher<iTunesDemo.iTunesResponseResult<iTunesDemo.MusicModel>, iTunesDemo.APIFailure>? {
+        let result = iTunesResponseResult(resultCount: list.count, results: list)
+        
+        let pulicsher = CurrentValueSubject<iTunesResponseResult<MusicModel>, APIFailure>(result).eraseToAnyPublisher()
+        return pulicsher
+    }
+    
+    func loadBookmark() -> [iTunesDemo.MusicModel] {
+        
+        return bookmark
+    }
+    
+    func updateBookmark(_ list: [iTunesDemo.MusicModel]) {
+        print(list)
+    }
+    
+    
+}
 final class iTunesDemoTests: XCTestCase {
     var s1:MusicModel?
     var s2:MusicModel?
     var ablum:MusicModel?
     var artist:MusicModel?
-    
+    var movie:MusicModel?
     override func setUpWithError() throws {
-        let encoder = JSONEncoder()
+//        let encoder = JSONEncoder()
         let decoder = JSONDecoder()
         s1 = try! decoder.decode(MusicModel.self, from: song1!)
-        s2 = try! decoder.decode(MusicModel.self, from: song1!)
+        s2 = try! decoder.decode(MusicModel.self, from: song2!)
         ablum = try! decoder.decode(MusicModel.self, from: ablumJson!)
         artist = try! decoder.decode(MusicModel.self, from: artJson!)
+//        movie = try! decoder.decode(MusicModel.self, from: movieJson!)
         
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDownWithError() throws {
@@ -177,19 +198,34 @@ final class iTunesDemoTests: XCTestCase {
     
     func testSongViewModel() throws{
         guard let s1 = self.s1 else { return  }
-        let viewModel = SongCellViewModel(s1)
+        var viewModel = SongCellViewModel(s1)
+        
         // 正确
         XCTAssertEqual(viewModel.title , s1.trackName)
-        XCTAssertEqual(viewModel.detail ?? "" ,"\(Localiz.Search.song.str()) · \(s1.artistName!)")
+        XCTAssertEqual(viewModel.detail ?? "" ,"\(Localiz.Search.song.str) · \(s1.artistName!)")
         XCTAssertEqual(viewModel.viewURL,URL(string: s1.trackViewUrl!))
         XCTAssertEqual(viewModel.imageUrl,URL(string:s1.artworkUrl100!))
+        XCTAssertNotNil(viewModel.actionItem)
+        
+        if case let .button(image) = viewModel.actionItem {
+            XCTAssert(image == UIImage(systemName: "star"))
+        }else{
+            XCTAssert(false, "xxx")
+        }
+        
+        viewModel.isBookmark = true
+        if case let .button(image) = viewModel.actionItem {
+            XCTAssert(image == UIImage(systemName: "star.fill"))
+        }else{
+            XCTAssert(false, "xxx")
+        }
         //错误
     }
     func testAblumViewModel() throws{
         guard let album = self.ablum else { return }
         let vm = AlbumCellViewModel(album)
         XCTAssertEqual(vm.title , album.collectionName)
-        XCTAssertEqual(vm.detail ?? "" ,"\(Localiz.Search.album.str()) · \(album.artistName!)")
+        XCTAssertEqual(vm.detail ?? "" ,"\(Localiz.Search.album.str) · \(album.artistName!)")
         XCTAssertEqual(vm.viewURL,URL(string: album.collectionViewUrl!))
         XCTAssertEqual(vm.imageUrl,URL(string:album.artworkUrl100!))
         
@@ -219,14 +255,76 @@ final class iTunesDemoTests: XCTestCase {
         XCTAssert(viewModel.displayData.isEmpty, "数据应该为空")
     }
     func testSearchViewModel() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-//        let viewModel = SearchViewModel()
-//        viewModel.keywords = "zhou"
-//        viewModel.fetchData()
+        guard let song1 = s1,
+        let song2 = s2,
+        let album = ablum,
+        let artist = artist
+//        let movie = movie
+        else { return }
+        let list = [song1,song2,album,artist]
+        let bookmark = [song1]
+        let viewModel = SearchViewModel(useCase: SearchViewModelTestCase(list: list, bookmark: bookmark))
+        
+        viewModel.keywords = "zhou"
+        // 检查数据
+        XCTAssert(viewModel.displayList.isEmpty)
+        viewModel.fetchData()
+        XCTAssert(viewModel.displayList.count == list.count)
+    
+        // 测试筛选
+        XCTAssert(viewModel.showFilters.count == list.count)
+        // 选择全部
+        viewModel.indexOfSelectedFilter = 0
+        XCTAssertNil(viewModel.selectMediaType)
+        XCTAssert(viewModel.displayList.count == list.count)
+        // 选择其他
+        viewModel.indexOfSelectedFilter = 1
+        XCTAssertNotNil(viewModel.selectMediaType)
+        XCTAssert(viewModel.selectMediaType == viewModel.filters[0])
+        XCTAssert(viewModel.displayList.count > 0 && viewModel.displayList.count < list.count)
+        
+        let count = viewModel.displayList.count
+        // 选择其他类型时不能加载数据
+        viewModel.fetchMoreData()
+        XCTAssert(viewModel.displayList.count == count)
+        
+        // 收藏
+        viewModel.loadBookmark()
+        viewModel.indexOfSelectedFilter = 0
+        
+        let trackId = bookmark.first?.trackId ?? 0
+        XCTAssert(viewModel.idsOfBoolmark.contains(bookmark.first?.trackId ?? 0))
+        XCTAssert(viewModel.listOfBookmark.contains(where: { $0.trackId == trackId }))
+        XCTAssert(viewModel.displayList.contains(where: { vm in
+            if let v = vm as? SongCellViewModel,
+               v.data.trackId == trackId,
+               v.isBookmark{
+                return true
+            }
+            return false
+        }))
+        // 插入收藏
+        viewModel.insetBookmark(song2)
+        XCTAssert(viewModel.idsOfBoolmark.count == 2)
+        XCTAssert(viewModel.listOfBookmark.contains(where: { $0.trackId == song2.trackId }))
+        // 移除
+        viewModel.removeBookmark(song2.trackId ?? 0)
+        XCTAssert(viewModel.idsOfBoolmark.contains(bookmark.first?.trackId ?? 0))
+        XCTAssert(viewModel.listOfBookmark.contains(where: { $0.trackId == trackId }))
+        XCTAssert(viewModel.displayList.contains(where: { vm in
+            if let v = vm as? SongCellViewModel,
+               v.data.trackId == trackId,
+               v.isBookmark{
+                return true
+            }
+            return false
+        }))
+        
+        // 加载数据
+        viewModel.fetchMoreData()
+        XCTAssert(viewModel.displayList.count == list.count * 2)
+        
+        
     }
 
     func testPerformanceExample() throws {

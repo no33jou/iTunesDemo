@@ -31,5 +31,7 @@ enum Localiz {
         case album
         case artist
         case all
+        case noDataTip
+        case networkErrorTip
     }
 }

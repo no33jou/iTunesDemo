@@ -19,7 +19,7 @@ class ListViewModel<T> {
         case error
         case loading
     }
-    var state:DataState = .normal
+   @Published var state:DataState = .normal
     var task:AnyCancellable?
     func resetData() {
         list = []

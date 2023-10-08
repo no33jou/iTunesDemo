@@ -12,6 +12,15 @@ import Combine
 class SearchResultViewController:UIViewController{
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityView: UIActivityIndicatorView!
+    // tableFoote， 用于显示空数据状态 和 网络错误
+    var footView:UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = .gray
+        return label
+    }()
+    /// 搜索栏 在didLoad 不存在，只有按了search 后存在
     var searchBar:UISearchBar?
     
     let viewModel = SearchViewModel(useCase: SearchViewModelUseCase())
@@ -71,6 +80,23 @@ class SearchResultViewController:UIViewController{
                 guard let alert = alert else { return }
                 alert.dismiss(animated: false)
             }
+        }.store(in: &cancellables)
+        
+        viewModel.$state.sink { [weak self] state in
+            guard let this = self else { return }
+            if state == .empty{
+                this.footView.text = Localiz.Search.noDataTip.str
+                this.footView.sizeToFit()
+                this.tableView.tableFooterView = self?.footView
+                return
+            }
+            if state == .error{
+                this.footView.text = Localiz.Search.networkErrorTip.str
+                this.footView.sizeToFit()
+                this.tableView.tableFooterView = self?.footView
+                return
+            }
+            this.tableView.tableFooterView = nil
         }.store(in: &cancellables)
     }
 }

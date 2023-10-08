@@ -14,6 +14,7 @@ protocol SearchViewModelCaseType {
     func updateBookmark(_ list:[MusicModel])
 }
 
+// 媒体类型 对应的展示文本
 extension MusicModel.MediaType{
     func filterString() -> String {
         switch self {
@@ -98,7 +99,7 @@ class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
     
     // MARK: - Alert
     let alertPublisher = PassthroughSubject<String,Never>()
-    // MARK: - Search Network
+    // MARK: - Search Data logic
     override func fetchData() {
         super.fetchData()
         
@@ -106,7 +107,7 @@ class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
         showLoading = true
         let api = useCase.searchMusic(keyword: keywords, medias: mediaTypes, offset: listCount)
         
-        task = api?.sink(receiveCompletion: { [weak self] completion in
+        task = api?.print().sink(receiveCompletion: { [weak self] completion in
             guard let this = self else { return }
             this.showLoading = false
             switch completion {
@@ -179,7 +180,7 @@ class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
         self.displayList = displayData
     }
 }
-// MARK: - Bookmark Func
+// MARK: - Bookmark Data Logic
 extension SearchViewModel{
     func loadBookmark() {
         listOfBookmark = useCase.loadBookmark()

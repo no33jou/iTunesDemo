@@ -12,15 +12,15 @@ protocol DataKindable{
     static var key:String { get }
 }
 
-protocol DataStoreable {
+protocol StorableMethod {
     func update<T:Codable>(key:String,data: T)
     func remove(key: String)
     func get<T:Codable>(key: String) -> T?
 }
 struct DataStoreService<T:Codable>{
     let key:String
-    let store:DataStoreable
-    init(key: String, store: DataStoreable) {
+    let store:StorableMethod
+    init(key: String, store: StorableMethod) {
         self.key = key
         self.store = store
     }
@@ -35,7 +35,7 @@ struct DataStoreService<T:Codable>{
     }
 }
 extension DataKindable{
-   static func whereStore(_ store: DataStoreable) -> DataStoreService<T>{
+   static func whereStore(_ store: StorableMethod) -> DataStoreService<T>{
         let service = DataStoreService<T>(key: key, store:store)
         return service
     }

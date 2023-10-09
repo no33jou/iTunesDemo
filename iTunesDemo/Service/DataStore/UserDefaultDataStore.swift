@@ -7,7 +7,7 @@
 
 import Foundation
 
-class UserDefaultDataStore:DataStoreable{
+class UserDefaultDataStore:StorableMethod{
     static let shared = UserDefaultDataStore()
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()

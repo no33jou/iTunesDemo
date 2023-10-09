@@ -19,7 +19,7 @@ import Foundation
 enum StoreKind {
     case userDefault
 
-    var store: DataStoreable {
+    var store: StorableMethod {
         switch self {
         case .userDefault:
             return UserDefaultDataStore.shared

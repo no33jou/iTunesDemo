@@ -11,16 +11,8 @@ import CoreTelephony
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-//        switch CTCellularData().cellularDataRestrictionDidUpdateNotifier {
-//            case .notRestricted:
-//            //无限制(允许无线局域网与蜂窝数据时)
-//            case .restricted:
-//            //受限的(仅允许无线局域网时、权限关闭时)
-//            case .restrictedStateUnknown:
-//            //受限状态未知的
-//        }
-
+        YNetworkHelper.shared.setup()
+        
         return true
     }
 

@@ -19,11 +19,11 @@ extension MusicModel.MediaType{
     func filterString() -> String {
         switch self {
         case .artist:
-            return Localiz.Search.artist.str
+            return YLocaliz.Search.artist.str
         case .song:
-            return Localiz.Search.song.str
+            return YLocaliz.Search.song.str
         case .album:
-            return Localiz.Search.album.str
+            return YLocaliz.Search.album.str
         case .unowned:
             return "unowned"
         }
@@ -54,7 +54,7 @@ class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
                 type.filterString()
             }
             
-            list.insert(Localiz.Search.all.str, at: 0)
+            list.insert(YLocaliz.Search.all.str, at: 0)
             self.showFilters = list
         }
     }
@@ -150,9 +150,9 @@ class SearchViewModel: ListViewModel<MusicModel>, ObservableObject {
     func alertFromNetowork(error: APIFailure){
         switch error {
         case .network:
-            alertPublisher.send(Localiz.Alert.networkError.str)
+            alertPublisher.send(YLocaliz.Alert.networkError.str)
         default:
-            alertPublisher.send(Localiz.Alert.unownedError.str)
+            alertPublisher.send(YLocaliz.Alert.unownedError.str)
         }
     }
     func refreshDisplayList() {

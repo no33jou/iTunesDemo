@@ -1,5 +1,5 @@
 //
-//  Localiz.swift
+//  YLocaliz.swift
 //  iTunesDemo
 //
 //  Created by yaojunren on 2023/10/6.
@@ -16,16 +16,21 @@ extension Localizable {
     }
 }
 
-enum Localiz {
+enum YLocaliz {
     enum Home: Localizable {
         case title
         case bookmarkHeader
         case searchPlaceholder
     }
+
     enum Alert: Localizable {
         case networkError
         case unownedError
+        case ok
+        case settings
+        case message
     }
+
     enum Search: Localizable {
         case song
         case album
@@ -33,5 +38,13 @@ enum Localiz {
         case all
         case noDataTip
         case networkErrorTip
+    }
+
+    enum Network: Localizable {
+        case notAvailable
+        case cellularDenied
+        case wifiDenied
+        case localNetworkDenied
+        case vpnInactive
     }
 }

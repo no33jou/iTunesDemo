@@ -10,6 +10,7 @@
 		960D3C682ACC6B6B00D7D53C /* MusicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960D3C672ACC6B6B00D7D53C /* MusicTableViewCell.swift */; };
 		960D3C6A2ACC6BAB00D7D53C /* MusicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 960D3C692ACC6BAB00D7D53C /* MusicTableViewCell.xib */; };
 		960D3C6D2ACC786200D7D53C /* UIViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960D3C6C2ACC786200D7D53C /* UIViewProtocol.swift */; };
+		9620D6CB2AD9BCBE0070F94A /* YNetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9620D6CA2AD9BCBE0070F94A /* YNetworkHelper.swift */; };
 		96350E4B2AD1381600E119D3 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96350E4A2AD1381600E119D3 /* DataStore.swift */; };
 		963CE6C82ACCFF0800DFD2D6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 963CE6C72ACCFF0800DFD2D6 /* Kingfisher */; };
 		963CE6CA2ACD019500DFD2D6 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CE6C92ACD019500DFD2D6 /* SearchViewModel.swift */; };
@@ -23,7 +24,7 @@
 		963CE6DD2ACFC4FD00DFD2D6 /* AlbumCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CE6DC2ACFC4FD00DFD2D6 /* AlbumCellViewModel.swift */; };
 		963CE6DF2ACFC66600DFD2D6 /* ArtistCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CE6DE2ACFC66600DFD2D6 /* ArtistCellViewModel.swift */; };
 		963CE6E72AD008E800DFD2D6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 963CE6E62AD008E800DFD2D6 /* Localizable.xcstrings */; };
-		963CE6E92AD009DB00DFD2D6 /* Localiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CE6E82AD009DB00DFD2D6 /* Localiz.swift */; };
+		963CE6E92AD009DB00DFD2D6 /* YLocaliz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CE6E82AD009DB00DFD2D6 /* YLocaliz.swift */; };
 		963CE6EB2AD02BD400DFD2D6 /* BookmarkViewModelCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CE6EA2AD02BD400DFD2D6 /* BookmarkViewModelCase.swift */; };
 		963CE6ED2AD043F700DFD2D6 /* SearchViewModelUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CE6EC2AD043F700DFD2D6 /* SearchViewModelUseCase.swift */; };
 		96DB71D42ACBF06F00EDC188 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DB71D32ACBF06F00EDC188 /* AppDelegate.swift */; };
@@ -61,6 +62,7 @@
 		960D3C672ACC6B6B00D7D53C /* MusicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTableViewCell.swift; sourceTree = "<group>"; };
 		960D3C692ACC6BAB00D7D53C /* MusicTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MusicTableViewCell.xib; sourceTree = "<group>"; };
 		960D3C6C2ACC786200D7D53C /* UIViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewProtocol.swift; sourceTree = "<group>"; };
+		9620D6CA2AD9BCBE0070F94A /* YNetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YNetworkHelper.swift; sourceTree = "<group>"; };
 		96350E4A2AD1381600E119D3 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		963CE6C92ACD019500DFD2D6 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		963CE6CC2ACD028700DFD2D6 /* MusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicModel.swift; sourceTree = "<group>"; };
@@ -77,7 +79,7 @@
 		963CE6E22ACFE05300DFD2D6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		963CE6E32ACFE05300DFD2D6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		963CE6E62AD008E800DFD2D6 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		963CE6E82AD009DB00DFD2D6 /* Localiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localiz.swift; sourceTree = "<group>"; };
+		963CE6E82AD009DB00DFD2D6 /* YLocaliz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YLocaliz.swift; sourceTree = "<group>"; };
 		963CE6EA2AD02BD400DFD2D6 /* BookmarkViewModelCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewModelCase.swift; sourceTree = "<group>"; };
 		963CE6EC2AD043F700DFD2D6 /* SearchViewModelUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelUseCase.swift; sourceTree = "<group>"; };
 		96DB71D02ACBF06F00EDC188 /* iTunesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +133,14 @@
 				963CE6D42ACEC99900DFD2D6 /* API */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		9620D6C92AD9BABE0070F94A /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				9620D6CA2AD9BCBE0070F94A /* YNetworkHelper.swift */,
+			);
+			path = Help;
 			sourceTree = "<group>";
 		};
 		963CE6CB2ACD027200DFD2D6 /* Model */ = {
@@ -202,6 +212,7 @@
 		96DB71D22ACBF06F00EDC188 /* iTunesDemo */ = {
 			isa = PBXGroup;
 			children = (
+				9620D6C92AD9BABE0070F94A /* Help */,
 				963CE6E42AD005C100DFD2D6 /* Page */,
 				963CE6CB2ACD027200DFD2D6 /* Model */,
 				960D3C6B2ACC6E4E00D7D53C /* Service */,
@@ -214,7 +225,7 @@
 				96DB71DE2ACBF07100EDC188 /* LaunchScreen.storyboard */,
 				96DB71E12ACBF07100EDC188 /* Info.plist */,
 				963CE6E62AD008E800DFD2D6 /* Localizable.xcstrings */,
-				963CE6E82AD009DB00DFD2D6 /* Localiz.swift */,
+				963CE6E82AD009DB00DFD2D6 /* YLocaliz.swift */,
 			);
 			path = iTunesDemo;
 			sourceTree = "<group>";
@@ -410,9 +421,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9620D6CB2AD9BCBE0070F94A /* YNetworkHelper.swift in Sources */,
 				963CE6DD2ACFC4FD00DFD2D6 /* AlbumCellViewModel.swift in Sources */,
 				963CE6D92ACECA7A00DFD2D6 /* UserDefaultDataStore.swift in Sources */,
-				963CE6E92AD009DB00DFD2D6 /* Localiz.swift in Sources */,
+				963CE6E92AD009DB00DFD2D6 /* YLocaliz.swift in Sources */,
 				96DB71D82ACBF06F00EDC188 /* HomeViewController.swift in Sources */,
 				960D3C6D2ACC786200D7D53C /* UIViewProtocol.swift in Sources */,
 				963CE6D32ACEC53400DFD2D6 /* BookmarkViewModel.swift in Sources */,
@@ -789,8 +801,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.9.1;
+				kind = exactVersion;
+				version = 7.9.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

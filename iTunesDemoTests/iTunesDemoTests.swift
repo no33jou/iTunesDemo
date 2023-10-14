@@ -202,7 +202,7 @@ final class iTunesDemoTests: XCTestCase {
         
         // 正确
         XCTAssertEqual(viewModel.title , s1.trackName)
-        XCTAssertEqual(viewModel.detail ?? "" ,"\(Localiz.Search.song.str) · \(s1.artistName!)")
+        XCTAssertEqual(viewModel.detail ?? "" ,"\(YLocaliz.Search.song.str) · \(s1.artistName!)")
         XCTAssertEqual(viewModel.viewURL,URL(string: s1.trackViewUrl!))
         XCTAssertEqual(viewModel.imageUrl,URL(string:s1.artworkUrl100!))
         XCTAssertNotNil(viewModel.actionItem)
@@ -225,7 +225,7 @@ final class iTunesDemoTests: XCTestCase {
         guard let album = self.ablum else { return }
         let vm = AlbumCellViewModel(album)
         XCTAssertEqual(vm.title , album.collectionName)
-        XCTAssertEqual(vm.detail ?? "" ,"\(Localiz.Search.album.str) · \(album.artistName!)")
+        XCTAssertEqual(vm.detail ?? "" ,"\(YLocaliz.Search.album.str) · \(album.artistName!)")
         XCTAssertEqual(vm.viewURL,URL(string: album.collectionViewUrl!))
         XCTAssertEqual(vm.imageUrl,URL(string:album.artworkUrl100!))
         

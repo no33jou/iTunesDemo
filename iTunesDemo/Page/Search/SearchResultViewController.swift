@@ -75,8 +75,9 @@ class SearchResultViewController:UIViewController{
         viewModel.alertPublisher.sink {[weak self] text in
             guard let this = self else { return }
             let alert = UIAlertController(title: nil, message: text, preferredStyle: .alert)
+            alert.view.layer.opacity = 0.8
             this.present(alert, animated: true)
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {[weak alert] in
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75) {[weak alert] in
                 guard let alert = alert else { return }
                 alert.dismiss(animated: false)
             }
@@ -85,13 +86,13 @@ class SearchResultViewController:UIViewController{
         viewModel.$state.sink { [weak self] state in
             guard let this = self else { return }
             if state == .empty{
-                this.footView.text = Localiz.Search.noDataTip.str
+                this.footView.text = YLocaliz.Search.noDataTip.str
                 this.footView.sizeToFit()
                 this.tableView.tableFooterView = self?.footView
                 return
             }
             if state == .error{
-                this.footView.text = Localiz.Search.networkErrorTip.str
+                this.footView.text = YLocaliz.Search.networkErrorTip.str
                 this.footView.sizeToFit()
                 this.tableView.tableFooterView = self?.footView
                 return

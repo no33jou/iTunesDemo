@@ -4,6 +4,7 @@
 版本：iOS 13+ （要是用Combine）
 
 依赖库：Kingfisher
+- (用最少的库实现功能)
 
 管理工具：SPM
 
@@ -19,6 +20,7 @@
 - 对收藏夹进行持久化
 ## 目录结构
 
+```
 --- Page 业务模块
     --- Home 首页
         --- Model
@@ -29,6 +31,7 @@
 --- Model 公共数据模型
 --- ViewModel 公共视图模型
 --- Service 公共服务
+```
 
 ## 技术点
 
@@ -37,10 +40,11 @@
     - 使用ListViewModel 简化分页数据逻辑
 - 国际化
     - 使用enum管理key值减少硬编码
-
 - APIService
     - 分离request
 - MVVM
   - CaseType
     - 方便为ViewModel 编写测试   
 - Combine
+- KVDataSotrage
+    - 架构上支持多种存储方式。UserDefault，File（json、plist等），Sqlite等
